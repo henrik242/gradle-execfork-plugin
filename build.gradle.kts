@@ -8,7 +8,7 @@ plugins {
     id("java-gradle-plugin")
 }
 
-group = "com.github.psxpaul"
+group = "gradle.plugin.com.github.psxpaul"
 version = File("VERSION").readText().trim()
 buildDir = File("build/gradle")
 
@@ -40,17 +40,17 @@ repositories {
     mavenCentral()
 }
 
-tasks {
-    val sampleProjects by creating(GradleBuild::class) {
-        buildFile = File("${project.rootDir}/sample_projects/build.gradle")
-        tasks = listOf("clean", "build")
-    }
-    sampleProjects.dependsOn("publishToMavenLocal")
-    "test" { finalizedBy(sampleProjects) }
-    named<Test>("test") {
-        testLogging.exceptionFormat = TestExceptionFormat.FULL
-    }
-}
+//tasks {
+//    val sampleProjects by creating(GradleBuild::class) {
+//        buildFile = File("${project.rootDir}/sample_projects/build.gradle")
+//        tasks = listOf("clean", "build")
+//    }
+//    sampleProjects.dependsOn("publishToMavenLocal")
+//    "test" { finalizedBy(sampleProjects) }
+//    named<Test>("test") {
+//        testLogging.exceptionFormat = TestExceptionFormat.FULL
+//    }
+//}
 
 val javadocJar by tasks.creating(Jar::class) {
     archiveClassifier.set("javadoc")
